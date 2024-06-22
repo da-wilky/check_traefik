@@ -18,7 +18,6 @@ package internal
 
 import (
 	"crypto/tls"
-	"net"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -27,7 +26,7 @@ import (
 	"github.com/NETWAYS/go-check"
 )
 
-func NewRequest(method string, ip net.IP, hostname string, ssl bool, port int, path string, username string, password string) *http.Request {
+func NewRequest(method string, ip string, hostname string, ssl bool, port int, path string, username string, password string) *http.Request {
 	var (
 		hostPort  string = ""
 		schema    string = "http"
@@ -47,7 +46,7 @@ func NewRequest(method string, ip net.IP, hostname string, ssl bool, port int, p
 	}
 	healthUrl = &url.URL{
 		Scheme: schema,
-		Host:   ip.String() + hostPort,
+		Host:   ip + hostPort,
 		Path:   path,
 	}
 

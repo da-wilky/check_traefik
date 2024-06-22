@@ -17,7 +17,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package cmd
 
 import (
-	"net"
 	"time"
 
 	"github.com/NETWAYS/go-check"
@@ -27,7 +26,7 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var (
 	version  string = "0.1.0"
-	ip       net.IP
+	ip       string 
 	hostname string
 	port     int
 	username string
@@ -58,7 +57,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	rootCmd.PersistentFlags().IPVarP(&ip, "IP-address", "I", nil, "IP of the Traefik host to check (required)")
+	rootCmd.PersistentFlags().StringVarP(&ip, "IP-address", "I", "", "IP of the Traefik host to check (required)")
 	rootCmd.MarkPersistentFlagRequired("IP-address")
 	rootCmd.PersistentFlags().StringVarP(&hostname, "hostname", "H", "", "Hostname of the Traefik host to check")
 	rootCmd.PersistentFlags().IntVarP(&port, "port", "P", 80, "Port of the Traefik API")
